@@ -1,0 +1,12 @@
+.wp-block[data-type="just-to-say/container"].has-background {
+  line-height: 2;
+  width: 90%;
+  max-width: 900px;
+  margin: 2em auto;
+  white-space: pre-wrap; }
+  .wp-block[data-type="just-to-say/container"].has-background textarea {
+    width: 100%;
+    padding: 1em; }
+
+
+/*# sourceMappingURL=index.css.map*/

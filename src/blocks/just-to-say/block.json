@@ -1,0 +1,19 @@
+{
+	"name": "mjj-why/just-to-say",
+	"category": "widgets",
+	"attributes": {
+		"lib": {
+			"type": "string"
+		},
+		"attribution": {
+			"type": "string"
+		},
+		"blockId": {
+			"type": "string"
+		}
+	},
+	"supports": {
+		"align": [ "wide", "full" ],
+		"anchor": true
+	}
+}

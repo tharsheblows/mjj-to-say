@@ -1,0 +1,13 @@
+.wp-block-just-to-say-container {
+  line-height: 2;
+  width: 90%;
+  max-width: 900px;
+  margin: 2em auto;
+  white-space: pre-wrap; }
+  .wp-block-just-to-say-container textarea {
+    width: 100%;
+    height: 30em;
+    padding: 1em; }
+
+
+/*# sourceMappingURL=style-index.css.map*/
