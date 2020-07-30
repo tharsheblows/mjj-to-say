@@ -24,7 +24,7 @@ export const createLib = ( markup ) => {
 		defaultLibText = defaultLibText.replace( stringToReplace, defaultWord ); // Just the text.
 		defaultLibHtml = defaultLibHtml.replace(
 			stringToReplace,
-			`<span class='mjj-libs-default-word'>${ defaultWord }</span> <span class="mjj-libs-description">${ description }</span>`
+			`<span class='mjj-libs-default-word'>${ defaultWord }</span> <span class="mjj-libs-description">(${ description })</span>`
 		); // For styling innit.
 		inputFields.push( { description: description } ); // Push the description to the end of the array. These are going to be done in order for now, we can complicate it later.
 	} );

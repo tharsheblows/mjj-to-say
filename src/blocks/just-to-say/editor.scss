@@ -1,6 +1,6 @@
-.wp-block[data-type="just-to-say/container"] {
+.editor-styles-wrapper .mjj-jts-edit{
 
-	&.has-background {
+		font-size: 1rem;
 
 		line-height: 2;
 		width: 90%;
@@ -8,9 +8,50 @@
 		margin: 2em auto;
 		white-space: pre-wrap;
 
+		p{
+			font-size: 1rem;
+			margin-bottom: 0;
+		}
+
+		label{
+			width: 30%;
+			display: inline-block;
+			font-size: 1rem;
+		}
+
+		button{
+			margin-right: 1em;
+			margin-bottom: 2em;
+		}
+
 		textarea {
 			width: 100%;
 			padding: 1em;
 		}
-	}
+
+		.rendered{
+			margin-bottom: 2em;
+		}
+
+		.mjj-jts-enter{
+			label{
+				width: 100%;
+			}
+
+			.textareas{
+				border: 1px solid #60654d;
+				border-radius: 1em;
+				padding: 1em;
+				background: rgba( 0, 0, 0, 0.03);
+				margin-bottom: 1em;
+			}
+		}
+
+		.mjj-libs-default-word{
+			text-decoration: underline;
+		}
+
+		.mjj-libs-description{
+			background: rgba( 255, 255, 0, 0.15);
+		}
 }
