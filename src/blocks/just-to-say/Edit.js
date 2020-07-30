@@ -25,7 +25,7 @@ function Edit( props ) {
 	);
 	const [ which, setWhich ] = useState( 'inputs' );
 	const [ whichComponent, setWhichComponent ] = useState( '' );
-	const [ attribution, setAttribution ] = useState( '' );
+	const [ attribution, setAttribution ] = useState( attributes.attribution );
 
 	const getBlockId =
 		typeof attributes.blockId === 'string'
@@ -45,6 +45,11 @@ function Edit( props ) {
 
 		setAttributes( { lib: t } );
 	};
+
+	const updateAttribution = ( v ) => {
+		setAttribution( v )
+		setAttributes( { attribution: v } )
+	}
 
 	useEffect( () => {
 
@@ -70,38 +75,39 @@ function Edit( props ) {
 
 	return (
 		<div class="mjj-jts-edit">
-			<div class="rendered">
-				{ whichComponent }
-			</div>
-			{ isSelected &&
-			<div className="mjj-jts-enter">
-				<button onClick={ () => setWhich( 'defaultLib' ) }>
-					Show default lib
-				</button>
-				<button onClick={ () => setWhich( 'htmlLib' ) }>
-					Show lib with descriptions
-				</button>
-				<button onClick={ () => setWhich( 'inputs' ) }>
-					Show front end inputs
-				</button>
-				<div className="textareas">
-					<TextareaControl
-						rows="17"
-						label="Enter the content template here."
-						help="For words which should be replaced, use the default word first, then a description of the type of word the user should enter to replace it. Eg {{plums, noun}} or {{plums, thing you might eat}}"
-						value={ text }
-						onChange={ ( text ) => updateLib( text ) }
-					/>
+			<div class="rendered">{ whichComponent }</div>
+			{ ! isSelected && <div className="attribution">{ attribution }</div> }
+			{ isSelected && (
+				<div className="mjj-jts-enter">
+					<button onClick={ () => setWhich( 'defaultLib' ) }>
+						Show default lib
+					</button>
+					<button onClick={ () => setWhich( 'htmlLib' ) }>
+						Show lib with descriptions
+					</button>
+					<button onClick={ () => setWhich( 'inputs' ) }>
+						Show front end inputs
+					</button>
+
+					<div className="textareas">
+						<TextareaControl
+							rows="17"
+							label="Enter the content template here."
+							help="For words which should be replaced, use the default word first, then a description of the type of word the user should enter to replace it. Eg {{plums, noun}} or {{plums, thing you might eat}}"
+							value={ text }
+							onChange={ ( text ) => updateLib( text ) }
+						/>
+					</div>
+					<div className="textareas">
+						<TextareaControl
+							label="Attribution (this is a textarea because you need a good attribution)"
+							help="Please provide a correct attribution to the author of the original piece if you didn't make it up yourself."
+							value={ attribution }
+							onChange={ ( v ) => updateAttribution( v ) }
+						/>
+					</div>
 				</div>
-				<div className="textareas">
-					<TextareaControl
-						label="Attribution (this is a textarea because you need a good attribution)"
-						help="Please provide a correct attribution to the author of the original piece if you didn't make it up yourself."
-						value={ attribution }
-						onChange={ ( v ) => setAttribution( v ) }
-					/>
-				</div>
-			</div> }
+			) }
 		</div>
 	);
 }
