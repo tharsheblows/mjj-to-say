@@ -64,7 +64,7 @@ function Edit( props ) {
 				);
 				break;
 			case 'inputs':
-				setWhichComponent( <Inputs inputFields={ inputFields } /> );
+				setWhichComponent( <Inputs inputFields={ inputFields } divId={ getBlockId } /> );
 				break;
 			default:
 				setWhichComponent( 'inputs' );
