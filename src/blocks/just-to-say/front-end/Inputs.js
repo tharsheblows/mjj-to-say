@@ -1,9 +1,11 @@
 import React from 'react'
-import sanitizeHtml from 'sanitize-html'
+import DOMPurify from 'dompurify';
+// import sanitizeHtml from 'sanitize-html'
 
 function Inputs(props) {
   const { inputFields, inputs, divId } = props
   // Used for sanitizing input fields. No tags allowed.
+  	const sanitizeHtml = DOMPurify.sanitize
   const allowedInputTags = []
   let count = 0
   const inputReturn =

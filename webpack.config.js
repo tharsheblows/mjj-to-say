@@ -2,10 +2,12 @@ const toml = require( 'toml' );
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 const BrowserSyncPlugin = require( 'browser-sync-webpack-plugin' );
 let localEnv = '';
+let frontEndEnv = '';
 
 // Check if local.json exists
 try {
 	localEnv = require( './local.json' ).devURL;
+	frontEndEnv = require( './local.json' ).frontEndURL;
 } catch ( err ) {
 	// Fallback if it does not
 	localEnv = 'https://iceberg.test';
@@ -48,18 +50,49 @@ var adminConfig = Object.assign({}, defaultConfig, {
 	],
 });
 
+
 var frontEndConfig = {
+	mode: defaultConfig.mode, // Otherwise this fails for some reason. Maybe the external React dependency? I don't know.
+	devtool: 'inline-source-map',
 	entry: './src/front-index.js',
 	output: {
 		filename: 'front.bundle.js',
+		pathinfo: false
 	},
-	externals: {
+	externals: ( defaultConfig.mode === 'production' ) ? {
 		react: 'React',
-		reactDom: 'ReactDom'
-	},
+		reactDom: 'ReactDom',
+	} : {},
 	module: {
-		...defaultConfig.module
+		rules: [
+			{
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+				},
+			},
+		],
 	},
+	optimization: {
+		...defaultConfig.optimization,
+	},
+	stats: {maxModules: Infinity, exclude: undefined},
+	plugins: [
+		new BrowserSyncPlugin(
+			{
+				host: 'localhost',
+				port: 3000,
+				proxy: frontEndEnv,
+				open: true,
+				files: [ 'dist/front.bundle.js' ],
+			},
+			{
+				injectCss: true,
+				reload: false,
+			}
+		),
+	],
 };
 
 module.exports = [ adminConfig, frontEndConfig ];

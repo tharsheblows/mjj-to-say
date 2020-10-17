@@ -12,6 +12,5 @@ const elementsToRender = document.getElementsByClassName( 'mjj-why');
 for (let element of elementsToRender ) {
 	const attrString = element.getAttribute( 'data-attr' );
 	const attr       = JSON.parse( attrString );
-	console.log(attr);
 	ReactDOM.render( <MJJJustToSay block={attr} />, element );
 }

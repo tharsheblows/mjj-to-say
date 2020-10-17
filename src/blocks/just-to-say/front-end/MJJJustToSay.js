@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import sanitizeHtml from 'sanitize-html'
+import DOMPurify from 'dompurify'
+//import sanitizeHtml from 'sanitize-html'
 import Inputs from './Inputs'
 import { createLib, makePoem, getInputValues } from './utils'
 
@@ -7,6 +8,8 @@ import { createLib, makePoem, getInputValues } from './utils'
 // import './styles.css'
 
 const MJJJustToSay = props => {
+
+	const sanitizeHtml = DOMPurify.sanitize
 
   // Get what we need from the attributes.
   // blockId is the unique block id. Attribution is, well, the attribution. Lib is our marked up poem.
