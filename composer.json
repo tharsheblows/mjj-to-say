@@ -2,11 +2,16 @@
   "name": "just-to-say/mjj-to-say",
   "type": "wordpress-plugin",
   "require": {
-    "php": ">=5.6"
+    "php": ">=7.2"
   },
   "config": {
     "platform": {
-      "php": "5.6"
+      "php": "7.2"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "MJJWhy\\JustToSay\\": "inc/"
     }
   },
   "require-dev": {

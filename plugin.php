@@ -10,7 +10,9 @@
  * @package         just-to-say
  */
 
-namespace  mjj_why\just_to_say;
+namespace  MJJWhy\JustToSay;
+
+use MJJWhy\JustToSay\Hooks;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -28,6 +30,11 @@ function load_textdomain() {
 }
 
 add_action( 'plugins_loaded', __NAMESPACE__ . '\load_textdomain', 99 );
+
+function front_end_scripts() {
+	wp_enqueue_script( 'mjj-to-say', plugins_url( '/dist/front.bundle.js', __FILE__ ), ['react', 'react-dom'], '0.0.1', true );
+}
+add_action( 'init', __NAMESPACE__ . '\front_end_scripts' );
 
 /**
  * Enqueue localization data for our blocks.
@@ -83,7 +90,7 @@ function editor_assets() {
 	wp_enqueue_script(
 		'just-to-say-mjj-to-say-editor',
 		plugins_url( '/build/index.js', __FILE__ ),
-		array_merge( asset_file( 'index', 'dependencies' ), array( 'wp-api', 'wp-compose' ) ),
+		array_merge( asset_file( 'index', 'dependencies' ), [ 'wp-api', 'wp-compose' ] ),
 		asset_file( 'index', 'version' ),
 		false
 	);
@@ -120,3 +127,9 @@ function asset_file( $handle, $key ) {
 foreach ( glob( dirname( __FILE__ ) . '/src/blocks/*/index.php' ) as $block_logic ) {
 	require_once $block_logic;
 }
+
+// Get all the php dependencies.
+require dirname( __FILE__ ) . '/vendor/autoload.php';
+
+$hooks = new Hooks();
+$hooks->add_hooks();

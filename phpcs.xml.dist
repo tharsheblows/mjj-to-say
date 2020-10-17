@@ -65,6 +65,7 @@
 	<rule ref="WordPress-Extra">
 		<!-- _e() and _ex() are considered safe for core translations. -->
 		<exclude name="WordPress.Security.EscapeOutput.UnsafePrintingFunction"/>
+		<exclude name="Generic.Arrays.DisallowLongArraySyntax"/>
 	</rule>
 
 	<rule ref="WordPress.WhiteSpace.ControlStructureSpacing">

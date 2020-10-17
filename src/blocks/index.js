@@ -15,7 +15,7 @@
 import { registerBlockType } from '@wordpress/blocks';
 
 // Register Blocks
-import * as justtosay from './just-to-say'
+import * as justtosay from './just-to-say/block-editor'
 
 export function registerBlocks() {
 	[ justtosay ].forEach( ( block ) => {

@@ -11,8 +11,9 @@ try {
 	localEnv = 'https://iceberg.test';
 }
 
-module.exports = {
-	...defaultConfig,
+// https://stackoverflow.com/questions/35903246/how-to-create-multiple-output-paths-in-webpack-config
+// The admin config.
+var adminConfig = Object.assign({}, defaultConfig, {
 	module: {
 		...defaultConfig.module,
 		rules: [
@@ -45,4 +46,20 @@ module.exports = {
 			}
 		),
 	],
+});
+
+var frontEndConfig = {
+	entry: './src/front-index.js',
+	output: {
+		filename: 'front.bundle.js',
+	},
+	externals: {
+		react: 'React',
+		reactDom: 'ReactDom'
+	},
+	module: {
+		...defaultConfig.module
+	},
 };
+
+module.exports = [ adminConfig, frontEndConfig ];
