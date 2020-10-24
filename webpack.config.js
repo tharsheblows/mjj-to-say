@@ -57,12 +57,15 @@ var frontEndConfig = {
 	entry: './src/front-index.js',
 	output: {
 		filename: 'front.bundle.js',
-		pathinfo: false
+		pathinfo: false,
 	},
-	externals: ( defaultConfig.mode === 'production' ) ? {
-		react: 'React',
-		reactDom: 'ReactDom',
-	} : {},
+	externals:
+		defaultConfig.mode === 'production'
+			? {
+					react: 'React',
+					reactDom: 'ReactDom',
+			  }
+			: {},
 	module: {
 		rules: [
 			{
@@ -72,12 +75,16 @@ var frontEndConfig = {
 					loader: 'babel-loader',
 				},
 			},
+			{
+				test: /\.css$/i,
+				use: [ 'style-loader', 'css-loader' ],
+			},
 		],
 	},
 	optimization: {
 		...defaultConfig.optimization,
 	},
-	stats: {maxModules: Infinity, exclude: undefined},
+	stats: { maxModules: Infinity, exclude: undefined },
 	plugins: [
 		new BrowserSyncPlugin(
 			{

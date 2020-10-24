@@ -5,11 +5,11 @@ import Inputs from './Inputs'
 import { createLib, makePoem, getInputValues } from './utils'
 
 // importing copied style so I can edit it, I'm doing one of the divs wrong and can't add the theme-ui stuff.
-// import './styles.css'
+import './styles.css'
 
 const MJJJustToSay = props => {
 
-	const sanitizeHtml = DOMPurify.sanitize
+  const sanitizeHtml = DOMPurify.sanitize
 
   // Get what we need from the attributes.
   // blockId is the unique block id. Attribution is, well, the attribution. Lib is our marked up poem.
